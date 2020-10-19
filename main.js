@@ -7,10 +7,8 @@ miro.onReady(() => {
  return Promise.resolve({
  tooltip: 'Hi',
  svgIcon: icon24,
- onClick: (widgets) => {
- console.log('onClick', widgets)
- });
- },
+ onClick: (widgets) => { console.log('onClick', widgets) }
+ });},
       bottomBar: {
         title: 'Looking Glass',
         svgIcon: icon,
