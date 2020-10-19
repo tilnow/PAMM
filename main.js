@@ -10,7 +10,7 @@ miro.onReady(() => {
  onClick: (widgets) => {
  console.log('onClick', widgets)
  });
- }
+ },
       bottomBar: {
         title: 'Looking Glass',
         svgIcon: icon,
