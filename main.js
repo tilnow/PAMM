@@ -6,7 +6,7 @@ miro.onReady(() => {
       getWidgetMenuItems: (widgets) => {
  return Promise.resolve({
  tooltip: 'Hi',
- svgIcon: icon24,
+ svgIcon: icon,
  onClick: (widgets) => { console.log('onClick', widgets) }
  });},
       bottomBar: {
