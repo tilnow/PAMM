@@ -3,7 +3,7 @@ miro.onReady(() => {
   miro.addListener(miro.enums.event.SELECTION_UPDATED, getWidget)
   getWidget()
 })
-
+var crdid="";
 // Get html elements for tip and text container
 const tipElement = document.getElementById('tip')
 const widgetTextElement = document.getElementById('widget-text')
@@ -18,7 +18,7 @@ async function getWidget() {
   // Get first widget from selected widgets
   let wid=widgets[0];
   let appkey="3074457350779991865";
-  let crdid="";
+
   metadata_not_exists=(wid.metadata[appkey] == undefined);
   if (metadata_not_exists)
   {
