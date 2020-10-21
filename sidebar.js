@@ -22,7 +22,7 @@ async function getWidget() {
   metadata_not_exists=(wid.metadata[appkey] == undefined);
   if (metadata_not_exists)
   {
-    crdid=await miro.board.widgets.create({type:"CARD",clientVisible: false, title:wid.plainText, text:""})
+    crdid=await miro.board.widgets.create({type:"CARD",clientVisible: false, title:wid.plainText, text:""}).crdid;
     let temp2={id:wid.id,metadata:{}}
     temp2.metadata[appkey]={cardid:crdid};
     await miro.board.widgets.update(temp2)
@@ -34,9 +34,11 @@ async function getWidget() {
   let text=crd.text;
   tipElement.style.opacity = '0';
   widgetTextElement.value = text;
-  (function(crdid){
   document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
-  })(crdid);
+
+  /*(function(crdid){
+  document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
+  })(crdid);*/
   /*
   let text = widgets[0].text
 
