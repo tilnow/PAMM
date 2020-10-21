@@ -33,7 +33,7 @@ async function getWidget() {
     crdid=wid.metadata[appkey].cardid;
   }
   let crd=await miro.board.widgets.get({id:crdid});
-  let text=crd[0].text;
+  let text=crd[0].description;
   tipElement.style.opacity = '0';
   widgetTextElement.value = text;
   document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
