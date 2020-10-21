@@ -11,12 +11,15 @@ const widgetTextElement = document.getElementById('widget-text')
 async function getWidget() {
   // Get selected widgets
   let widgets = await miro.board.selection.get()
-
+  if (widgets.length==0){
+    console.log("nothing selected, so going home");
+    return;
+  }
   // Get first widget from selected widgets
   let wid=widgets[0];
-  let apppkey="3074457350779991865";
-  metadatexists=(wid.metadata[appkey] != undefined);
-  if (!metadatexists)
+  let appkey="3074457350779991865";
+  metadata_not_exists=(wid.metadata[appkey] == undefined);
+  if (metadata_not_exists)
   {
     let temp=await miro.board.widgets.create({type:"CARD",clientVisible: false})
     let temp2={id:wid.id}
