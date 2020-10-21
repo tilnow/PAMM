@@ -22,7 +22,7 @@ async function getWidget() {
   if (metadata_not_exists)
   {
     let temp=await miro.board.widgets.create({type:"CARD",clientVisible: false})
-    let temp2={id:wid.id}
+    let temp2={id:wid.id,metadata:{}}
     temp2.metadata[appkey]={cardid:temp};
     temp2.title=wid.plainText;
 
