@@ -34,8 +34,9 @@ async function getWidget() {
   let text=crd.text;
   tipElement.style.opacity = '0'
   widgetTextElement.value = text
-  document.getElementById("close-but").addEventListener("click",function(){ miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
-
+  (function(crdid){
+  document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
+  })(crdid);
   /*
   let text = widgets[0].text
 
