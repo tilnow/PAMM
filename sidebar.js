@@ -13,13 +13,34 @@ async function getWidget() {
   let widgets = await miro.board.selection.get()
 
   // Get first widget from selected widgets
+  let wid=widgets[0];
+  let apppkey="3074457350779991865";
+  metadatexists=(wid.metadata[appkey] != undefined);
+  if (!metadatexists)
+  {
+    let temp=await miro.board.widgets.create({type:"CARD",clientVisible: false})
+    let temp2={id:wid.id}
+    temp2.metadata[appkey]={cardid:temp};
+    temp2.title=wid.plainText;
+
+   await miro.board.widgets.update(temp2)
+  }
+  let crdid=wid.metadata[appkey].cardid;
+  let crd=await miro.board.widgets.get({id:crdid});
+  let text=crd.text;
+  tipElement.style.opacity = '0'
+  widgetTextElement.value = text
+  document.getElementById("close-but").addEventListener("click",function(){ miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
+
+  /*
   let text = widgets[0].text
 
-  // Check that widget has text field
+  // Check that widget has text field - though we can do this for any type of widget
   if (typeof text === 'string') {
 
     // hide tip and show text in sidebar
     tipElement.style.opacity = '0'
+    
     widgetTextElement.value = text
   } else {
 
@@ -27,4 +48,5 @@ async function getWidget() {
     tipElement.style.opacity = '1'
     widgetTextElement.value = ''
   }
+  */
 }
