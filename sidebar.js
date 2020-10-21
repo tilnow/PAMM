@@ -36,7 +36,7 @@ async function getWidget() {
   let text=crd[0].description;
   tipElement.style.opacity = '0';
   widgetTextElement.value = text;
-  document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
+  document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,description:widgetTextElement.value});});
 
   /*(function(crdid){
   document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
