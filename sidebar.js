@@ -22,8 +22,9 @@ async function getWidget() {
   metadata_not_exists=(wid.metadata[appkey] == undefined);
   if (metadata_not_exists)
   {
-    crdid=await miro.board.widgets.create({type:"CARD",clientVisible: false, title:wid.plainText, text:""});
-    console.log("created",crdid);
+    crdid=await miro.board.widgets.create({type:"card",clientVisible: false, title: (wid.plainText || "no title"), description:"no details yet"});
+    var temp=crdid;
+    console.log("created an object. check it:",temp[0]);
     crdid=crdid[0].id;
     let temp2={id:wid.id,metadata:{}}
     temp2.metadata[appkey]={cardid:crdid};
@@ -36,26 +37,11 @@ async function getWidget() {
   let text=crd[0].description;
   tipElement.style.opacity = '0';
   widgetTextElement.value = text;
-  document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,description:widgetTextElement.value});});
+  document.getElementById("close-but").addEventListener("click",async ()=> { 
+    console.log(crdid,widgetTextElement.value); 
+    var v=await miro.board.widgets.update({id:crdid,description:widgetTextElement.value});
+    console.log("a promise?", v)
+  });
 
-  /*(function(crdid){
-  document.getElementById("close-but").addEventListener("click",function(){ console.log(crdid,widgetTextElement.value); miro.board.widgets.update({id:crdid,text:widgetTextElement.value});});
-  })(crdid);*/
-  /*
-  let text = widgets[0].text
-
-  // Check that widget has text field - though we can do this for any type of widget
-  if (typeof text === 'string') {
-
-    // hide tip and show text in sidebar
-    tipElement.style.opacity = '0'
-    
-    widgetTextElement.value = text
-  } else {
-
-    // show tip and clear text in sidebar
-    tipElement.style.opacity = '1'
-    widgetTextElement.value = ''
-  }
-  */
+  
 }
